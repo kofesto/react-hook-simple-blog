@@ -12,7 +12,7 @@ const SideBar = () => {
                 <Link to="#" className="list-group-item list-group-item-action">
                     <span className="fas fa-pencil-alt"></span> Posts <span className="badge badge-dark">43</span>
                 </Link>
-                <Link to="users.html" className="list-group-item list-group-item-action">
+                <Link to="#" className="list-group-item list-group-item-action">
                     <span className="fas fa-users"></span> Users  <span className="badge badge-dark">16</span>
                 </Link>
             </div>

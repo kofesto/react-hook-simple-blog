@@ -10,7 +10,7 @@ const AdminNav = () => {
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#adminbar" arial-controls="adminbar" arial-expanded="false">
             <span className="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="adminbar">
+        <div className="collapse navbar-collapse" id="adminbar">
             <ul className="navbar-nav">
                 <li className="nav-item">
                     <NavLink to="dashboard" className="nav-link">Dashboard</NavLink>

@@ -1,4 +1,5 @@
 import React from 'react';
+//import {Redirect} from 'react-router-dom';
 import Header from './layouts/Header';
 import useFormValidation from './useFormValidation';
 import validateAuth from './validateAuth';
@@ -11,7 +12,29 @@ const INITIAL_STATE = {
 }
 
 const Register = () => {
-    const {handleSubmit,handleChange,handleBlur,values,errors,isSubmitting} = useFormValidation(INITIAL_STATE,validateAuth);
+    const {handleSubmit,handleChange,handleBlur,values,errors,isSubmitting} = useFormValidation(INITIAL_STATE,validateAuth,signup);
+    const [register, setRegister] = React.useState(false)
+    
+    async function signup(){
+        const {firstname,lastname,email,password} = values;
+        try{
+            const res = await fetch(`http://localhost:8080/auth/register`,{
+                method:'POST',
+                headers :{'Content-Type':'application/json'},
+                body : JSON.stringify({firstname,lastname,email,password})
+            });
+            if(!res.ok){
+                throw new Error(res.status);
+            }
+            const userSignup = await res.json();
+            console.log(userSignup);
+            //send message to user to login
+            setRegister(userSignup)
+        }catch(error){
+            console.log(error);
+        }
+    }
+
     return (
        <React.Fragment>
            <Header />
@@ -35,6 +58,7 @@ const Register = () => {
                                           autoComplete='off'
                                           placeholder='Enter first name'
                                            />
+                                           {errors.firstname && <p className="text-danger">{errors.firstname}</p>}
                                        </div>
                                    </div>
                                    <div className='form-group row'>
@@ -50,6 +74,7 @@ const Register = () => {
                                            autoComplete='off'
                                            placeholder='Enter last name'
                                             />
+                                            {errors.lastname && <p className="text-danger">{errors.lastname}</p>}
                                        </div>
                                    </div>
                                    <div className='form-group row'>
@@ -90,6 +115,9 @@ const Register = () => {
                                        </div>
                                    </div>
                                </form>
+                               <div>
+                                   <p>{register ? 'Registration successful, you can login':''} </p>
+                               </div>
                            </div>
                        </div>
                    </div>

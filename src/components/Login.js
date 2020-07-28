@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import {Redirect} from 'react-router-dom';
 import Header from './layouts/Header';
 import useFormValidation from './useFormValidation';
 import validateAuth from './validateAuth';
@@ -9,27 +10,38 @@ const INITIAL_STATE = {
 }
 
 const Login = () => {
-    const {handleSubmit,handleChange,handleBlur,values,errors,isSubmitting} = useFormValidation(INITIAL_STATE,validateAuth);
+    const {handleSubmit,handleChange,handleBlur,values,errors,isSubmitting} = useFormValidation(INITIAL_STATE,validateAuth,authenticate);
     // const [email, setEmail] = React.useState('');
     // const [password, setPassword] = React.useState('');
+   
+    //const [login, setLogin] = React.useState(false)
+ 
+    async function authenticate() {
+        const {email, password} = values;
+        try{
+            const res = await fetch(`http://localhost:8080/auth/login`,{
+                        method:'POST',
+                        headers : {'Content-Type':'application/json'},
+                        body: JSON.stringify({email,password}) 
+                    });
+                    if(!res.ok){
+                        throw new Error(res.status);
+                    }
+                    const login = await res.json();
+                    console.log(login);
+                    //setLogin(true);
+                    window.sessionStorage.setItem('current_user',login);
+                    return <Redirect to='/login' />
+        } catch(error){
+            console.log(error);
+        }
+    }
+ 
     /*
-    const [login, setLogin] = useState(false)
-    const [email, password] = values;
-     const submit = e => {
-    e.preventDefault()
-    fetch(`http://localhost:8080/auth/login`, {
-      method: 'POST',
-      //body: JSON.stringify({ email, comment }),
-      body: JSON.stringify({ email, password }),
-      headers : {'Content-Type':'application/json'}
-    }).then(() => setLogin(true))
-  }
-
-  if(login){
-      window.sessionStorage.setItem('current_user',token);
-      <Redirect to='/dashboard' />
-  }
-    */
+    if(login){
+       return <Redirect to = '/dashboard' />
+    }*/
+    
 
     return (
         <React.Fragment>
@@ -70,9 +82,8 @@ const Login = () => {
                                             placeholder='Enter Password'
                                             autoComplete='off' 
                                             />
-                                            
+                                            {errors.password && <p className="text-danger">{errors.password}</p>}
                                         </div>
-                                        {errors.password && <p className="text-danger">{errors.password}</p>}
                                     </div>
                                     <div className='form-group row mb-0'>
                                         <div className='col-md-6 offset-md-4'>

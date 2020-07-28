@@ -10,9 +10,17 @@ export default function validateAuth(values){
     }
     //password errors
     if(!values.password){
-        values.password = 'password is required';
+        errors.password = 'password is required';
     }else if(values.password.length < 6){
         errors.password = 'Password must be at least 6 characters'; 
+    }
+    //first name
+    if(!values.firstname){
+        errors.firstname = 'First Name is required';
+    }
+    
+    if(!values.lastname){
+        errors.lastname = 'Last Name is required';
     }
     return errors;
 }

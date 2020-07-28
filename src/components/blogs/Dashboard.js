@@ -65,36 +65,40 @@ const Dashboard = () => {
                                 </div>
                                 <div className='card-body'>
                                     <table className='table table-striped table-hover'>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Joined</th>
-                                        </tr>
-                                        <tr>
-                                            <td>John Smith</td>
-                                            <td>jsmith@gmail.com</td>
-                                            <td>Dec, 12 2017</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Eve Jackson</td>
-                                            <td>jackee@yahoo.com</td>
-                                            <td>Oct, 26 2018</td>
-                                        </tr>
-                                        <tr>
-                                            <td>John Doe</td>
-                                            <td>jdoe@yahoo.com</td>
-                                            <td>Sept, 24 2015</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Stephanie Landon</td>
-                                            <td>steph4real@gmail.com</td>
-                                            <td>Jan, 08 2018</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Koffi Seglo</td>
-                                            <td>kofesto@yahoo.com</td>
-                                            <td>Aug, 02 2019</td>
-                                        </tr>
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Joined</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>John Smith</td>
+                                                <td>jsmith@gmail.com</td>
+                                                <td>Dec, 12 2017</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Eve Jackson</td>
+                                                <td>jackee@yahoo.com</td>
+                                                <td>Oct, 26 2018</td>
+                                            </tr>
+                                            <tr>
+                                                <td>John Doe</td>
+                                                <td>jdoe@yahoo.com</td>
+                                                <td>Sept, 24 2015</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Stephanie Landon</td>
+                                                <td>steph4real@gmail.com</td>
+                                                <td>Jan, 08 2018</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Koffi Seglo</td>
+                                                <td>kofesto@yahoo.com</td>
+                                                <td>Aug, 02 2019</td>
+                                            </tr>
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>
