@@ -58,7 +58,7 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 ### Credits
 
-[Koffi Seglo](https://github.com/kofesto/)
+[Koffi Seglo](https://linkedin.com/in/kofesto)
 
 ### License
 
