@@ -64,4 +64,24 @@ export default function Private({
          </>                    
     </UnlockAccess>
 </Dashboard>
+
+const ProtectedRoute = ({ component: Component, roles, ...rest }) => (
+    <Route {...rest} render={props => {
+        const {user} = useAuth();
+        if (!user) {
+            // not logged in so redirect to login page with the return url
+            return <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
+        }
+        roles = localStorage.getItem('role');
+        // check if route is restricted by role
+        if (roles !== 'owner') {
+            // role not authorised so redirect to home page
+            //return <Redirect to={{ pathname: '/'}} />
+            history.goBack()
+        }
+
+        // authorised so return component
+        return <Component {...props} />
+    }} />
+
 */
